@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, useColorModeValue as mode } from "@chakra-ui/react";
 
 export interface ICardHeader {
   title: string;
@@ -7,7 +7,11 @@ export interface ICardHeader {
 const CardHeader: React.FC<ICardHeader> = ({ title }) => {
   return (
     <Box p="3" pb="0">
-      <Text color="gray.500" fontSize="sm" fontWeight="medium">
+      <Text
+        color={mode("gray.500", "gray.300")}
+        fontSize="sm"
+        fontWeight="medium"
+      >
         {title}
       </Text>
     </Box>

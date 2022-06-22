@@ -9,8 +9,8 @@ const theme = extendTheme({
         body: {
           backgroundColor:
             colorMode === "light"
-              ? (theme.colors.gray[100] as any)
-              : (theme.colors.gray[900] as any),
+              ? (theme.colors.gray[50] as any)
+              : (theme.colors.gray[700] as any),
         },
       };
     },

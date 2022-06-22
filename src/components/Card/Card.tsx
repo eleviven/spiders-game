@@ -1,12 +1,12 @@
-import { Box, BoxProps } from "@chakra-ui/react";
+import { Box, BoxProps, useColorModeValue as mode } from "@chakra-ui/react";
 import CardBody from "./CardBody";
 import CardHeader from "./CardHeader";
 
 const Card: React.FC<BoxProps> = ({ children, ...props }) => {
   return (
     <Box
-      bg="white"
-      borderColor="gray.300"
+      bg={mode("white", "gray.600")}
+      borderColor={mode("gray.300", "gray.800")}
       borderWidth="1px"
       borderBottomWidth="3px"
       rounded="md"
