@@ -1,0 +1,23 @@
+{
+  "id": 1,
+  "spiders": {
+    "1": {
+      "id": 1,
+      "x": 0,
+      "y": 90,
+      "image": "spider.png"
+    },
+    "2": {
+      "id": 2,
+      "x": 200,
+      "y": 200,
+      "image": "spider.png"
+    }
+  },
+  "lines": {
+    "1": {
+      "id": 1,
+      "spiders": [1, 2]
+    }
+  }
+}
