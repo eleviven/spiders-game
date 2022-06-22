@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Flex, VStack } from "@chakra-ui/react";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../store";
 import { GameBox, LevelActions, ScoreBoard } from "../components";
 
 const GamePage: React.FC = () => {
+  const { game } = useStore();
+
+  const initGame = () => {
+    game.fetchLevel(1);
+  };
+
+  useEffect(() => {
+    initGame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Flex gap="4" flexWrap="wrap">
       <Box flexGrow="1">
@@ -18,4 +31,4 @@ const GamePage: React.FC = () => {
 
 GamePage.displayName = "Game Page";
 
-export default GamePage;
+export default observer(GamePage);
