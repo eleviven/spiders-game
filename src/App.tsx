@@ -1,5 +1,12 @@
+import { ChakraProvider } from "@chakra-ui/react";
+import GamePage from "./pages/GamePage";
+
 const App: React.FC = () => {
-  return <div>App</div>;
+  return (
+    <ChakraProvider>
+      <GamePage />
+    </ChakraProvider>
+  );
 };
 
 App.displayName = "App";
