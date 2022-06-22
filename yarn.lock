@@ -323,7 +323,7 @@
     "@babel/helper-plugin-utils" "^7.17.12"
     "@babel/plugin-syntax-class-static-block" "^7.14.5"
 
-"@babel/plugin-proposal-decorators@^7.16.4":
+"@babel/plugin-proposal-decorators@^7.16.4", "@babel/plugin-proposal-decorators@^7.18.2":
   version "7.18.2"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.18.2.tgz#dbe4086d2d42db489399783c3aa9272e9700afd4"
   integrity sha512-kbDISufFOxeczi0v4NQP3p5kIeW6izn/6klfWBrIIdGZZe4UpHR+QU03FAoWjGGd9SUXAwbw2pup1kaL4OQsJQ==
@@ -6049,6 +6049,16 @@ mkdirp@~0.5.1:
   integrity sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==
   dependencies:
     minimist "^1.2.6"
+
+mobx-react-lite@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-3.4.0.tgz#d59156a96889cdadad751e5e4dab95f28926dfff"
+  integrity sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==
+
+mobx@^6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.6.0.tgz#617ca1f3b745a781fa89c5eb94a773e3cbeff8ae"
+  integrity sha512-MNTKevLH/6DShLZcmSL351+JgiJPO56A4GUpoiDQ3/yZ0mAtclNLdHK9q4BcQhibx8/JSDupfTpbX2NZPemlRg==
 
 ms@2.0.0:
   version "2.0.0"
