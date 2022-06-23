@@ -1,0 +1,79 @@
+{
+  "id": 3,
+  "spiders": {
+    "1": {
+      "id": 1,
+      "x": 150,
+      "y": 150,
+      "image": "spider.png"
+    },
+    "2": {
+      "id": 2,
+      "x": 400,
+      "y": 150,
+      "image": "spider.png"
+    },
+    "3": {
+      "id": 3,
+      "x": 75,
+      "y": 75,
+      "image": "spider.png"
+    },
+    "4": {
+      "id": 4,
+      "x": 300,
+      "y": 200,
+      "image": "spider.png"
+    },
+    "5": {
+      "id": 5,
+      "x": 154,
+      "y": 235,
+      "image": "spider.png"
+    },
+    "6": {
+      "id": 6,
+      "x": 540,
+      "y": 40,
+      "image": "spider.png"
+    },
+    "7": {
+      "id": 7,
+      "x": 54,
+      "y": 190,
+      "image": "spider.png"
+    },
+    "8": {
+      "id": 8,
+      "x": 90,
+      "y": 80,
+      "image": "spider.png"
+    }
+  },
+  "lines": {
+    "1": {
+      "id": 1,
+      "spiders": [1, 2]
+    },
+    "2": {
+      "id": 2,
+      "spiders": [3, 4]
+    },
+    "3": {
+      "id": 3,
+      "spiders": [5, 6]
+    },
+    "4": {
+      "id": 4,
+      "spiders": [5, 2]
+    },
+    "5": {
+      "id": 5,
+      "spiders": [1, 7]
+    },
+    "6": {
+      "id": 6,
+      "spiders": [8, 7]
+    }
+  }
+}
