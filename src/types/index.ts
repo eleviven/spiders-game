@@ -1,7 +1,5 @@
-export interface ISpider {
+export interface ISpider extends ICoordinates {
   id: number;
-  x: number;
-  y: number;
   image: string;
 }
 
@@ -14,4 +12,9 @@ export interface ILevel {
   id: number;
   spiders: Record<number, ISpider>;
   lines: Record<number, ILine>;
+}
+
+export interface ICoordinates {
+  x: number;
+  y: number;
 }

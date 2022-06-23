@@ -2,7 +2,7 @@ import { Container, Center } from "@chakra-ui/react";
 
 const AppLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
-    <Center minH="100vh" pb="24" pt="4">
+    <Center minH="100vh" pb="20" pt="4">
       <Container maxW="container.lg">{children}</Container>
     </Center>
   );
