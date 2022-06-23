@@ -6,16 +6,27 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@heroicons/react/outline";
+import { useStore } from "../../store";
 
 const LevelActions: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { game } = useStore();
+
+  const handleReload = () => {
+    game.fetchLevel(game.level);
+  };
+
+  const handleReset = () => {
+    game.fetchLevel(1);
+  };
+
   return (
     <HStack w="full">
-      <Button size="sm" colorScheme="twitter">
+      <Button size="sm" colorScheme="twitter" onClick={handleReload}>
         Reload Level
       </Button>
-      <Button size="sm" colorScheme="gray">
-        Restart
+      <Button size="sm" colorScheme="gray" onClick={handleReset}>
+        Restart Game
       </Button>
       <IconButton
         icon={<Icon as={colorMode === "dark" ? SunIcon : MoonIcon} />}
