@@ -1,4 +1,10 @@
-import { action, computed, makeObservable, observable } from "mobx";
+import {
+  action,
+  computed,
+  makeObservable,
+  observable,
+  runInAction,
+} from "mobx";
 import { ICoordinates, ILevel, ILine, ISpider } from "../types";
 
 export default class GameStore {
@@ -30,8 +36,10 @@ export default class GameStore {
         if (!data) return;
         this.setGame(data);
       } catch (error) {
-        this.loading = false;
-        this.ended = true;
+        runInAction(() => {
+          this.loading = false;
+          this.ended = true;
+        });
       }
     }, 0);
   }

@@ -60,14 +60,8 @@ const Line: React.FC<ILineProps> = ({ line }) => {
     }
 
     game.setIntersectedLine(line.id, !!isIntersect);
-  }, [
-    spider1.x,
-    spider1.y,
-    spider2.id,
-    spider2.x,
-    spider2.y,
-    toJS(game.intersectedLines),
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toJS(game.spiders)]);
 
   return (
     <Box

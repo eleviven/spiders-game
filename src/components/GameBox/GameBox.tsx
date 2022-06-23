@@ -60,40 +60,42 @@ const GameBox: React.FC = () => {
       ) : (
         "loading..."
       )}
-      {/* Modal */}
-      <Modal
-        isOpen={!game.getIsIntersectedLines && !isGameEnd}
-        onClose={handleNextLevel}
-      >
-        <ModalOverlay />
-        <ModalContent bg="yellow.500">
-          <ModalBody>
-            <Box my="4">
-              <Text fontSize="xl" fontWeight="semibold">
-                Great
-              </Text>
-              <Text mb="3">You did a good job</Text>
-              <Button onClick={handleNextLevel}>Next</Button>
-            </Box>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-      <Modal isOpen={isGameEnd} onClose={handleNextLevel}>
-        <ModalOverlay />
-        <ModalContent bg="green.500">
-          <ModalBody>
-            <Box my="4">
-              <Text color="white" fontSize="xl" fontWeight="semibold">
-                Game Over
-              </Text>
-              <Text color="white" mb="3">
-                You have completed all levels
-              </Text>
-              <Button onClick={handleRestart}>Restart</Button>
-            </Box>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      {/* Congrats Modal */}
+      {!game.getIsIntersectedLines && !isGameEnd && (
+        <Modal isOpen={true} onClose={handleNextLevel}>
+          <ModalOverlay />
+          <ModalContent bg="yellow.500">
+            <ModalBody>
+              <Box my="4">
+                <Text fontSize="xl" fontWeight="semibold">
+                  Great
+                </Text>
+                <Text mb="3">You did a good job</Text>
+                <Button onClick={handleNextLevel}>Next</Button>
+              </Box>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      )}
+      {/* End Game Modal */}
+      {isGameEnd && (
+        <Modal isOpen={true} onClose={handleNextLevel}>
+          <ModalOverlay />
+          <ModalContent bg="green.500">
+            <ModalBody>
+              <Box my="4">
+                <Text color="white" fontSize="xl" fontWeight="semibold">
+                  Game Over
+                </Text>
+                <Text color="white" mb="3">
+                  You have completed all levels
+                </Text>
+                <Button onClick={handleRestart}>Restart</Button>
+              </Box>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      )}
     </Card>
   );
 };
