@@ -1,17 +1,20 @@
 import { Box, Image } from "@chakra-ui/react";
 import { motion, ResolvedValues } from "framer-motion";
-import { ICoordinates, ISpider } from "../../../types";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../../../store";
+import { ISpider } from "../../../types";
 
 export interface ISPiderProps {
   gameBoxRef: React.RefObject<HTMLElement>;
-  spider: ISpider;
-  onUpdate?: (latest: ICoordinates) => void;
+  spiderId: number;
 }
 
-const Spider: React.FC<ISPiderProps> = ({ gameBoxRef, spider, onUpdate }) => {
+const Spider: React.FC<ISPiderProps> = ({ gameBoxRef, spiderId }) => {
+  const { game } = useStore();
+  const spider: ISpider = game.spiders[spiderId];
   // this function will trigger when every spider dragging
   const handleUpdate = (latest: ResolvedValues) => {
-    onUpdate?.({
+    game.updateSpiderCoords?.(spider.id, {
       x: Number(latest.x),
       y: Number(latest.y),
     });
@@ -40,7 +43,7 @@ const Spider: React.FC<ISPiderProps> = ({ gameBoxRef, spider, onUpdate }) => {
       userSelect="none"
     >
       <Image
-        src={spider.image}
+        src={`/images/${spider.image}`}
         alt="spider"
         w="full"
         h="full"
@@ -52,4 +55,4 @@ const Spider: React.FC<ISPiderProps> = ({ gameBoxRef, spider, onUpdate }) => {
 
 Spider.displayName = "Spider";
 
-export default Spider;
+export default observer(Spider);
