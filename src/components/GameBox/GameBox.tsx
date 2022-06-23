@@ -41,6 +41,12 @@ const GameBox: React.FC = () => {
               const subSpider1 = game.spiders[subLine.spiders[0]];
               const subSpider2 = game.spiders[subLine.spiders[1]];
 
+              const isSamePoint = [spider1.id, spider2.id].includes(
+                subSpider1.id || subSpider2.id
+              );
+
+              if (isSamePoint) continue;
+
               isIntersect = calculateIsIntersect(
                 spider1.x,
                 spider1.y,
