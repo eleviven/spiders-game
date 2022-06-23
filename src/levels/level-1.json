@@ -12,12 +12,32 @@
       "x": 200,
       "y": 200,
       "image": "spider.png"
+    },
+    "3": {
+      "id": 3,
+      "x": 200,
+      "y": 250,
+      "image": "spider.png"
+    },
+    "4": {
+      "id": 4,
+      "x": 360,
+      "y": 150,
+      "image": "spider.png"
     }
   },
   "lines": {
     "1": {
       "id": 1,
       "spiders": [1, 2]
+    },
+    "2": {
+      "id": 2,
+      "spiders": [3, 4]
+    },
+    "3": {
+      "id": 3,
+      "spiders": [3, 1]
     }
   }
 }

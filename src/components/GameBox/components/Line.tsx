@@ -6,9 +6,10 @@ export interface ILine {
   lineId?: number;
   spider1: ISpider;
   spider2: ISpider;
+  isIntersect: boolean;
 }
 
-const Line: React.FC<ILine> = ({ spider1, spider2 }) => {
+const Line: React.FC<ILine> = ({ spider1, spider2, isIntersect }) => {
   const distance = calculateDistance(
     spider1.x,
     spider1.y,
@@ -31,7 +32,7 @@ const Line: React.FC<ILine> = ({ spider1, spider2 }) => {
       w={numWithPx(distance)}
       transform={`rotate(${angel}deg)`}
       transformOrigin="top left"
-      bg="red.500"
+      bg={isIntersect ? "red.500" : "yellow.500"}
     />
   );
 };
