@@ -8,10 +8,12 @@ import Spider from "./components/Spider";
 import {
   Box,
   Button,
+  Center,
   Modal,
   ModalBody,
   ModalContent,
   ModalOverlay,
+  Spinner,
   Text,
 } from "@chakra-ui/react";
 
@@ -58,7 +60,9 @@ const GameBox: React.FC = () => {
           })}
         </Fragment>
       ) : (
-        "loading..."
+        <Center h="full">
+          <Spinner size="lg" />
+        </Center>
       )}
       {/* Congrats Modal */}
       {!game.getIsIntersectedLines && !isGameEnd && (

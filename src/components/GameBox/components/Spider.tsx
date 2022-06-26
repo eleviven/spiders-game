@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { Box, Image } from "@chakra-ui/react";
-import { motion, ResolvedValues } from "framer-motion";
+import { motion, ResolvedValues, useAnimation } from "framer-motion";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../../store";
 import { ISpider } from "../../../types";
@@ -11,6 +12,8 @@ export interface ISPiderProps {
 
 const Spider: React.FC<ISPiderProps> = ({ gameBoxRef, spiderId }) => {
   const { game } = useStore();
+  const control = useAnimation();
+
   const spider: ISpider = game.spiders[spiderId];
   // this function will trigger when every spider dragging
   const handleUpdate = (latest: ResolvedValues) => {
@@ -20,9 +23,15 @@ const Spider: React.FC<ISPiderProps> = ({ gameBoxRef, spiderId }) => {
     });
   };
 
+  useEffect(() => {
+    control.set({ x: spider.x, y: spider.y });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Box
       as={motion.div}
+      animate={control}
       drag={true}
       dragConstraints={gameBoxRef} // Gamebox is our frame
       dragElastic={0}
@@ -30,10 +39,6 @@ const Spider: React.FC<ISPiderProps> = ({ gameBoxRef, spiderId }) => {
       whileTap={{
         zIndex: 10,
         scale: 1.1,
-      }}
-      initial={{
-        x: spider.x, // initial x position of spider
-        y: spider.y, // initial y position of spider
       }}
       onUpdate={handleUpdate}
       position="absolute"
