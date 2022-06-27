@@ -5,12 +5,8 @@ import {
   IconButton,
   useColorMode,
 } from "@chakra-ui/react";
-import {
-  SunIcon,
-  MoonIcon,
-  ReplyIcon,
-  RefreshIcon,
-} from "@heroicons/react/outline";
+import { SunIcon, MoonIcon, RefreshIcon } from "@heroicons/react/outline";
+import { observer } from "mobx-react-lite";
 import { useStore } from "../../store";
 
 const LevelActions: React.FC = () => {
@@ -50,4 +46,4 @@ const LevelActions: React.FC = () => {
 
 LevelActions.displayName = "Level Actions";
 
-export default LevelActions;
+export default observer(LevelActions);

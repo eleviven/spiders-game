@@ -5,9 +5,11 @@ import {
   observable,
   runInAction,
 } from "mobx";
+import { Store } from ".";
 import { ICoordinates, ILevel, ILine, ISpider } from "../types";
 
 export default class GameStore {
+  root;
   // State
   @observable level = 0;
   @observable spiders: Record<number, ISpider> = {};
@@ -17,6 +19,7 @@ export default class GameStore {
   @observable intersectedLines: Record<number, boolean> = {};
   @observable loading: boolean = true;
   @observable ended: boolean = false;
+  @observable isInteract = false;
 
   // Actions
   @action setGame(payload: ILevel) {
@@ -27,6 +30,7 @@ export default class GameStore {
     this.intersectedLines = {};
     this.loading = false;
     this.ended = false;
+    this.isInteract = false;
   }
   @action fetchLevel(id: number) {
     this.loading = true;
@@ -44,8 +48,8 @@ export default class GameStore {
     }, 0);
   }
   @action nextLevel() {
-    if (this.timeRecord === 0 || this.timeRecord > this.timeActual) {
-      this.timeRecord = this.timeActual;
+    if (this.timeRecord === 0 || this.timeRecord > this.root.timer.value) {
+      this.timeRecord = this.root.timer.value;
     }
     this.fetchLevel(this.level + 1);
   }
@@ -66,6 +70,9 @@ export default class GameStore {
     if (!current && !payload) return;
     this.intersectedLines[id] = payload;
   }
+  @action setInteract(payload: boolean) {
+    this.isInteract = payload;
+  }
 
   //Getters
   @computed get getSpiders(): ISpider[] {
@@ -81,8 +88,12 @@ export default class GameStore {
     }
     return list.filter((i) => i).length !== 0;
   }
+  @computed get getIsLevelEnd() {
+    return !this.getIsIntersectedLines && !this.isInteract;
+  }
 
-  constructor() {
+  constructor(root: Store) {
     makeObservable(this);
+    this.root = root;
   }
 }

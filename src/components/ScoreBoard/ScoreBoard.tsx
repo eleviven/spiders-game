@@ -6,9 +6,9 @@ import Card from "../Card/Card";
 import { getTimerFromSeconds } from "../../utils";
 
 const ScoreBoard: React.FC<BoxProps> = () => {
-  const { game } = useStore();
+  const { game, timer } = useStore();
 
-  const actualTime = getTimerFromSeconds(game.timeActual);
+  const actualTime = getTimerFromSeconds(timer.value);
   const bestTime = getTimerFromSeconds(game.timeRecord || 0);
 
   return (

@@ -41,6 +41,8 @@ const Spider: React.FC<ISPiderProps> = ({ gameBoxRef, spiderId }) => {
         scale: 1.1,
       }}
       onUpdate={handleUpdate}
+      onDragStart={() => game.setInteract(true)}
+      onDragEnd={() => game.setInteract(false)}
       position="absolute"
       zIndex="5"
       w="10"

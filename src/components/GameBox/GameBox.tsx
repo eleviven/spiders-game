@@ -1,7 +1,6 @@
-import { Fragment, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../store";
-import useTimer from "../../hooks/useTimer";
 import Card from "../Card/Card";
 import Line from "./components/Line";
 import Spider from "./components/Spider";
@@ -19,18 +18,10 @@ import {
 
 const GameBox: React.FC = () => {
   const gameBoxRef = useRef<HTMLDivElement | null>(null);
-  const { game } = useStore();
+  const { game, timer } = useStore();
 
-  const isLevelEnd = !game.getIsIntersectedLines;
+  const isLevelEnd = !game.getIsIntersectedLines && !game.isInteract;
   const isGameEnd = game.ended;
-
-  useTimer({
-    value: game.timeActual,
-    skip: isLevelEnd || game.loading,
-    onUpdate(value) {
-      game.setTimeActual(value);
-    },
-  });
 
   const handleNextLevel = () => {
     game.nextLevel();
@@ -39,6 +30,21 @@ const GameBox: React.FC = () => {
   const handleRestart = () => {
     game.fetchLevel(1);
   };
+
+  useEffect(() => {
+    timer.subscribe();
+    return () => {
+      timer.unsubscribe();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [game.loading]);
+
+  useEffect(() => {
+    if (isLevelEnd || isGameEnd) {
+      return timer.stop();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLevelEnd, isGameEnd]);
 
   return (
     <Card ref={gameBoxRef} pos="relative" h="60vh" bg="white">
@@ -65,7 +71,7 @@ const GameBox: React.FC = () => {
         </Center>
       )}
       {/* Congrats Modal */}
-      {!game.getIsIntersectedLines && !isGameEnd && (
+      {game.getIsLevelEnd && !isGameEnd && (
         <Modal isOpen={true} onClose={handleNextLevel}>
           <ModalOverlay />
           <ModalContent bg="yellow.500">
